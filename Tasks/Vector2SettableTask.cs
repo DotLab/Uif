@@ -1,11 +1,12 @@
 ﻿using Uif.Settables;
+using UnityEngine;
 
 namespace Uif.Tasks {
-	public sealed class FloatSettableTask : SettableTask<float> {
-		public float delta;
+	public sealed class Vector2SettableTask : SettableTask<Vector2> {
+		public Vector2 delta;
 		public bool isRelative;
 
-		public FloatSettableTask(ISettable<float> target, float duration, int esType) : base(target, duration, esType) {}
+		public Vector2SettableTask(ISettable<Vector2> target, float duration, int esType) : base(target, duration, esType) {}
 
 		public override void Start() {
 			base.Start();
