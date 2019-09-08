@@ -69,6 +69,10 @@ namespace Uif {
 			return this;
 		}
 
+		public AnimationSequence Append(System.Func<AnimationSequence, AnimationSequence> gen) {
+			return gen(this);
+		}
+
 		public AnimationSequence Then() {
 			nextTaskStartTime = duration;
 			return this;

@@ -14,5 +14,9 @@ namespace Uif.Tasks {
 			if (setStartFromTarget) start = target.Get();
 			if (setEndFromTarget) end = target.Get();
 		}
+
+		public override void Finish() {
+			target.Set(end);
+		}
 	}
 }

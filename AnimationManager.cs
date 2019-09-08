@@ -7,7 +7,7 @@ namespace Uif {
 
 		public event System.Action<float, float> AnimationUpdate;
 
-		readonly LinkedList<AnimationSequence>sequenceList = new LinkedList<AnimationSequence>();
+		readonly LinkedList<AnimationSequence> sequenceList = new LinkedList<AnimationSequence>();
 
 		void Awake() {
 			if (instance == null) {

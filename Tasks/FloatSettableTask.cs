@@ -17,10 +17,6 @@ namespace Uif.Tasks {
 		public override void Apply(float t) {
 			target.Set(start + delta * t);
 		}
-
-		public override void Finish() {
-			target.Set(end);
-		}
 	}
 }
 
