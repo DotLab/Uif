@@ -15,6 +15,10 @@ namespace Uif.Settables {
 	}
 
 	public static partial class AnimationSequenceExtension {
+		public static RectTransformAnchoredPositionVector2Settable GetAnchoredPositionVector2Settable(this RectTransform target) {
+			return new RectTransformAnchoredPositionVector2Settable(target);
+		}
+
 		public static AnimationSequence MoveFrom(this AnimationSequence seq, RectTransform target, Vector2 a, float duration, int esType) {
 			seq.Append(new Vector2SettableTask(new RectTransformAnchoredPositionVector2Settable(target), duration, esType){start = a, setEndFromTarget = true});
 			return seq;

@@ -15,6 +15,10 @@ namespace Uif.Settables {
 	}
 
 	public static partial class AnimationSequenceExtension {
+		public static CanvasGroupAlphaFloatSettable GetAlphaFloatSettable(this CanvasGroup target) {
+			return new CanvasGroupAlphaFloatSettable(target);
+		}
+
 		public static AnimationSequence FlashFrom(this AnimationSequence seq, CanvasGroup target, float a, float duration, int esType) {
 			seq.Append(new FloatSettableTask(new CanvasGroupAlphaFloatSettable(target), duration, esType){start = a, setEndFromTarget = true});
 			return seq;
