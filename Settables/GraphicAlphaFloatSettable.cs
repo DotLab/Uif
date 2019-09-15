@@ -21,13 +21,18 @@ namespace Uif.Settables {
 			return new GraphicAlphaFloatSettable(target);
 		}
 
-		public static AnimationSequence FlashFrom(this AnimationSequence seq, Graphic target, float a, float duration, int esType) {
+		public static AnimationSequence FadeFrom(this AnimationSequence seq, Graphic target, float a, float duration, int esType) {
 			seq.Append(new FloatSettableTask(new GraphicAlphaFloatSettable(target), duration, esType){start = a, setEndFromTarget = true});
 			return seq;
 		}
 
 		public static AnimationSequence FadeTo(this AnimationSequence seq, Graphic target, float a, float duration, int esType) {
 			seq.Append(new FloatSettableTask(new GraphicAlphaFloatSettable(target), duration, esType){end = a, setStartFromTarget = true});
+			return seq;
+		}
+
+		public static AnimationSequence FadeFromTo(this AnimationSequence seq, Graphic target, float a, float b, float duration, int esType) {
+			seq.Append(new FloatSettableTask(new GraphicAlphaFloatSettable(target), duration, esType){start = a, end = b});
 			return seq;
 		}
 

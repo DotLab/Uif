@@ -18,8 +18,19 @@ namespace Uif {
 			}
 		}
 
-		public AnimationSequence New() {
-			var sequence = new AnimationSequence();
+		public AnimationSequence New(object handle = null) {
+			if (handle != null) {
+				for (var it = sequenceList.First; it != null;) {
+					if (it.Value.handle == handle) {
+						var next = it.Next;
+						sequenceList.Remove(it);
+						it = next;
+					} else {
+						it = it.Next;
+					}
+				}
+			}
+			var sequence = new AnimationSequence(handle);
 			sequenceList.AddLast(sequence);
 			return sequence;
 		}
@@ -31,20 +42,28 @@ namespace Uif {
 			for (var it = sequenceList.First; it != null;) {
 				var sequence = it.Value;
 
-				if (!sequence.hasStarted) {
-					sequence.hasStarted = true;
-					sequence.startTime = time;
-					sequence.Start();
-				}
+				try {
+					if (!sequence.hasStarted) {
+						sequence.hasStarted = true;
+						sequence.startTime = time;
+						sequence.Start();
+					}
 
-				sequence.Update(time - sequence.startTime);
+					sequence.Update(time - sequence.startTime);
 
-				if (sequence.hasFinished) {
+					if (sequence.hasFinished) {
+						var next = it.Next;
+						sequenceList.Remove(it);
+						it = next;
+					} else {
+						it = it.Next;
+					}
+				} catch(System.Exception e) {
+					Debug.LogError(e);
+
 					var next = it.Next;
 					sequenceList.Remove(it);
 					it = next;
-				} else {
-					it = it.Next;
 				}
 			}
 

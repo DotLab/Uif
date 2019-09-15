@@ -29,7 +29,7 @@ namespace Uif.Settables {
 			return seq;
 		}
 
-		public static AnimationSequence MoveToFrom(this AnimationSequence seq, RectTransform target, Vector2 a, Vector2 b, float duration, int esType) {
+		public static AnimationSequence MoveFromTo(this AnimationSequence seq, RectTransform target, Vector2 a, Vector2 b, float duration, int esType) {
 			seq.Append(new Vector2SettableTask(new RectTransformAnchoredPositionVector2Settable(target), duration, esType){start = a, end = b});
 			return seq;
 		}

@@ -13,6 +13,12 @@ namespace Uif {
 		int repeatIndex;
 		float repeatTimeOffset;
 
+		public readonly object handle;
+
+		public AnimationSequence(object handle) {
+			this.handle = handle;
+		}
+
 		public override void Start() {
 			index = 0;
 			repeatIndex = 0;
