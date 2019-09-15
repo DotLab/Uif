@@ -59,7 +59,7 @@ namespace Uif {
 						it = it.Next;
 					}
 				} catch(System.Exception e) {
-					Debug.LogError(e);
+					Debug.LogError("Animation Sequence throws\n" + e);
 
 					var next = it.Next;
 					sequenceList.Remove(it);
