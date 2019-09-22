@@ -65,11 +65,29 @@ namespace Uif.Binding {
 		}
 
 		public void SetTargetValue(object value) {
-			targetMember.Set(targetComponent, Convert.ChangeType(value, targetMember.type));
+			targetMember.Set(targetComponent, ChangeType(value, targetMember.type));
+		}
+
+		public void SetTargetInt(int value) {
+			SetTargetValue(value);
 		}
 
 		public void SetSelfValue(object value) {
-			selfMember.Set(selfComponent, Convert.ChangeType(value, selfMember.type));
+			selfMember.Set(selfComponent, ChangeType(value, selfMember.type));
+		}
+
+		static object ChangeType(object obj, Type targetType) {
+			if (targetType.IsEnum) {
+				if (obj is int || obj is uint ||
+					obj is short || obj is ushort ||
+					obj is long || obj is ulong ||
+					obj is byte || obj is sbyte ||
+					obj is decimal
+				) {
+					return Enum.ToObject(targetType, obj);
+				}
+			}
+			return Convert.ChangeType(obj, targetType);
 		}
 
 		static ReflectionContext.Member FindMember(ReflectionContext refCtx, object component, string name) {
