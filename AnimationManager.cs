@@ -18,6 +18,10 @@ namespace Uif {
 			}
 		}
 
+		public int GetSequenceCount() {
+			return sequenceList.Count;
+		}
+
 		public AnimationSequence New(object handle = null) {
 			if (handle != null) {
 				for (var it = sequenceList.First; it != null;) {
